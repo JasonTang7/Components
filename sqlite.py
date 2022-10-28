@@ -40,7 +40,7 @@ class DB:
             (?, ?, ?, '0', '', '0', '10', '0', '30000', '30000', '5000', '0', '4800', '0', '15000', '0', '15000', '0', '0', '0', '0', '0', '0', '0', '0', '0', '-1', '0,0,0;0,0,0;0,0,0;0,0,0;0,0,0;', '0,0,0;0,0,0;0,0,0;0,0,0;0,0,0;', '0,0,0;0,0,0;0,0,0;0,0,0;0,0,0;', '0', '0');
             '''
             self.Start()
-            self.cursor.execute(sql, (ID, RecipeName,datetime.datetime.now()))
+            self.cursor.execute(sql, (ID, RecipeName,datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")))
             self.conn.commit()
             self.Close()
             return 1
