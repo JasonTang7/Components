@@ -66,14 +66,20 @@ class DB:
         self.cursor.execute("select rowid, CycleCounter from WeldResult")
         lastCycle = -1
         lastID = -1
+        flag = 0
         for row in self.cursor:
             rowID = row[0]
             CycleNum = row[1]
             if(CycleNum != lastCycle + 1 and (CycleNum != 0) and (CycleNum != 1) and CycleNum != lastCycle):
                         print("previous:", lastID, lastCycle)
                         print("current:", rowID, CycleNum)
+                        flag = flag + 1
             lastCycle = CycleNum
             lastID = rowID
+        if flag:
+            print("There are ",flag,"suspects.")
+        else:
+            print("There is no missing data in database records.")
 
     def counter(self):
         counter = len(self.SelectALL())
